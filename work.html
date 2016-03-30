@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<title>缤纷视觉</title>
+	<style>
+	
+	
+	/*.work-introduce h3
+	{
+		font-family: "幼圆";
+		font-weight: bolder;
+		font-size: 16px;
+		text-align: center;
+		margin:5px auto;
+	}
+	.work-introduce p
+	{
+		font-family: "宋体";
+		font-weight: bolder;
+	}
+	.work-img img
+	{
+		width: 100%;
+		margin-bottom: 20px;
+	}*/
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="header" class="fixed-top">
+			<h1>
+				<img src="img/title.png" alt="" width="136" height="42">
+			</h1>
+			<ul class="h-nav">
+				<li><a href="index.html">HOME</a></li>
+				<li><a href="javascript:void(0)">WORK</a></li>
+				<li><a href="javascript:void(0)">CONTACT</a></li>
+				<li><a href="joinus.html">JOIN US</a></li>
+			</ul>
+			<img src="img/slider.png" alt="" class="slider">
+			<!-- <div class ="slider"><img src="img/slider.png" alt=""></div> -->
+		</div>
+		<div id="main">
+			<!-- <embed class="work-video" src="http://player.youku.com/player.php/sid/XMjM4ODExMDky/v.swf" allowFullScreen="true" quality="high" width="100%" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed> -->
+			<iframe class="work-video" width="100%" frameborder=0 allowfullscreen></iframe>
+			<div class="work-introduce">
+				<h3>华为发布会概念动画《改变未来的开始》</h3>
+				<p>Infini Studio创作的华为产品发布会开场动画，我么使用三维的动画图形效果呈现本片，展现华为公司的就开始就颠覆了jhd jfsdfl adjfkjs dfjk sdflai fdsdf jsdj fkjsdkf jksjd fjskd fks</p>
+				<p>Infini Studio创作的华为产品发布会开场动画，我么使用三维的动画图形效果呈现本片，展现华为公司的就开始就颠覆了</p>
+			</div>
+			<div class="work-img">
+				<h3>STILLS</h3>
+				<img src="img/video-pic/work_1.jpg" alt="" width="">
+				<img src="img/video-pic/work_2.jpg" alt="">
+				<img src="img/video-pic/work_3.jpg" alt="">
+				<img src="img/video-pic/work_4.jpg" alt="">
+			</div>
+		</div>
+		<div id="footer">
+			<div class="left">
+				<a href="###"><img src="img/footer/xinlang-logo.png" alt=""></a>
+				<a href="###"><img src="img/footer/v-logo.png" alt=""></a>
+				<a href="###"><img src="img/footer/douban.png" alt=""></a>
+			</div>
+			<div class="center">
+				<!-- <img src="img/footer/" alt=""> -->
+			</div>
+			<div class="right">
+				<div class="brand">
+					<img src="img/footer/footer-logo.png" alt="" height ="30">
+					<div class="url">www.infinistudio.cn</div>
+					<ol class="info">
+						<li>北京市朝阳北路36号亚宝时代大厦</li>
+						<li>Email infinistu@gmail.com</li>
+						<li>QQ:7585917</li>
+						<li>Tel:(+86)18610994852</li>
+						<li>weibo:@InfiniStudio</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-1.10.1.min.js"></script>
+	<script src="js/tween.js"></script>
+	<script>
+	$(window).load(function()
+	{
+		// alert(location.hash);
+		var source = location.hash;
+		var re = /^#url=/;
+		source=source.replace(re,"")
+		// alert(source);
+		$(".work-video").attr("src",source);
+
+		$bol=false;
+		$sPLeftOne = $(".h-nav li:eq(1)").position().left + $(".h-nav li:eq(1)").width()/2 - $(".slider").width()/2;
+		$sPTop = $("#header").height();
+		$(".slider").css({
+			left:$sPLeftOne,
+			top:$sPTop
+		});
+
+		
+		$(".h-nav a").bind({
+			mouseenter:function()
+			{
+				$(this).css({
+					color:"white"
+				});
+				
+				$sPLeft = $(".h-nav li").eq($(this).index("a")).position().left + $(".h-nav li").eq($(this).index("a")).width()/2 - $(".slider").width()/2;
+				$sPTop = $("#header").height();
+				$(".slider").stop().animate({
+					left:$sPLeft
+				});
+
+			},
+			mouseleave:function()
+			{
+				$(this).css({
+					color:"#adadad"
+				});
+				$sPTop = $("#header").height();
+				if($bol)
+				{
+					$bol=false;
+				}else{
+					$(".slider").stop().animate({
+						left:$sPLeftOne
+					},2000);
+				}
+			},
+			click:function()
+			{
+				$sPLeft = $(".h-nav li").eq($(this).index("a")).position().left + $(".h-nav li").eq($(this).index("a")).width()/2 - $(".slider").width()/2;
+				$sPTop = $("#header").height();
+				$(".slider").stop().animate({
+					left:$sPLeft
+				});
+				$bol=true;
+			}
+		})
+
+
+		$(".h-nav a").on('touchstart mousedown',function(e){
+		    e.preventDefault()
+			movePosition($(this))	
+		  
+		})
+
+		function movePosition(element)
+		{
+			// alert(element.html())
+
+			var end="";
+			switch(element.html())
+			{
+				case "WORK":
+					end=0;
+					break;
+				case "CONTACT":
+					end=$("#footer").offset().top-$("#header").height();
+					break;
+				default:
+					end=$(document).scrollTop();
+			}
+			var start=$(document).scrollTop();
+			var change = end - start;
+			var t=0;
+			var maxT = 30;
+			var changeTimer = setInterval(function()
+			{
+				t++;
+				if(t>=maxT)
+				{
+					clearInterval(changeTimer)
+				}
+				$(document).scrollTop(Tween.Sine.easeInOut(t,start,change,maxT))
+			},30)
+		}
+	})
+	</script>
+</body>
+</html>

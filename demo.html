@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/idangerous.swiper.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>主页</title>
+	<style>
+		.wrap
+		{
+			
+			width: 600px;
+			margin: 0 auto;
+			position: relative;
+			overflow: hidden;
+		}
+		
+		.wrap .arrow-left {
+		  /*background: url(img/arrows-left.png) no-repeat right center;*/
+		  position: absolute;
+		  width: 36px;
+		  height: 88%;	
+		  _height:500px;
+		  /*_background-color:rgb(255,255,255);*/
+		  /*filter:alpha(opacity=0);*/
+		  cursor: pointer;
+		  z-index: 10;
+		}
+		.wrap .arrow-left img{
+			position: absolute;
+			right: 0;
+			top:45%;
+			z-index: 10;
+		}
+
+		.wrap .arrow-right {
+		  position: absolute;
+		  right: 0;
+		  width: 36px;
+		  cursor: pointer;
+		  height: 88%;
+		   _height:500px;
+		  z-index: 10;
+		}
+		.wrap .arrow-right img{
+			position: absolute;
+			right: 20px;
+			top:45%;
+		}
+		.swiper-container {
+		  position: relative;
+		}
+
+		.pagination-nested {
+		  text-align: center;
+		  width: 100%;
+		  margin: 2% auto;
+		  z-index: 20;
+		}
+		.swiper-pagination-switch {
+		  display: inline-block;
+		  width: 10px;
+		  height: 10px;
+		  border-radius: 10px;
+		  background: #999;
+		  box-shadow: 0px 1px 2px #555 inset;
+		  margin: 0 3px;
+		  cursor: pointer;
+		}
+		.swiper-active-switch {
+		  background: #fff;
+		}
+		.swiper-container, .swiper-slide {
+		  width: 100%;
+		}
+		.wrap .swiper-slide {
+			position: relative;
+			/*float: left;*/
+		}
+		 .wrap .swiper-slide img {
+		  width: 100%;
+		  float: left;
+		  /*height: 100%;*/
+		}
+		.intro{
+			background-color: rgba(88,88,88,.6);
+			_background-color: rgb(88,88,88);
+			filter:alpha(opacity=60);
+			position: absolute;
+			z-index: 20;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			height: 40px;
+			line-height: 40px;
+		}
+		.alink
+		{
+			position: relative;
+			top:35px;
+
+			display: none;
+			color: white;
+			/*z-index: 30;*/
+			text-decoration: none;
+		}
+	</style>
+	<!--[if IE 6]>
+	<script src="js/DD_belatedPNG_0.0.8a.js" type="text/javascript" ></script>
+	<script type="text/javascript">
+	DD_belatedPNG.fix('img');
+	</script> 
+	<![endif]-->
+	<!-- IE6下png透明图像处理 -->
+</head>
+<body>
+	
+				<div class="wrap">	
+				  <div class="arrow-left" ><img src="img/arrows-left.png" alt=""></div> 
+				  <div class="arrow-right"><img src="img/arrows-right.png" alt=""></div>
+				  <div class="swiper-container swiper-nested">
+				    <div class="swiper-wrapper">
+				      <div class="swiper-slide"><a href="work.html#url=http://player.youku.com/embed/XMjM4ODExMDky"><img src="img/scroll-pic.jpg" alt=""></a></div>
+				      <div class="swiper-slide"><a href="###"><img src="img/scroll-pic.jpg" alt=""></a></div>
+				      <div class="swiper-slide"><a href="###"><img src="img/scroll-pic.jpg" alt=""></a></div>
+				    </div>
+				    <div class="intro">
+				    	<a href="###" class="alink">在豆瓣，兴趣让用户与品牌不期而遇</a>	
+				    	<a href="###" class="alink">华为发布会《改变未来的开始》</a>
+				    	<a href="###" class="alink">UC浏览器——快于一念，因你不凡</a>
+				    </div>
+				  </div>
+					
+				  <div class="pagination-nested"></div>
+				</div>
+
+			
+</body>			
+	<script src="js/jquery-1.10.1.min.js"></script>
+	<script src="js/tween.js"></script>
+	<script src="js/idangerous.swiper.2.5.1.js"></script>
+	<script>
+
+	var swiperNested1 = new Swiper('.swiper-nested',{
+	  pagination: '.pagination-nested',
+	  loop:true,
+	  speed:500,
+	  paginationClickable: true,
+	  // cssWidthAndHeight:true,
+	  calculateHeight:true,
+	  // autoplay:3000,
+	  // autoplayDisableOnInteraction:false,
+	   onFirstInit:function()
+	   {
+		   	$(".intro .alink:first-child").css({
+		   		display:"block",
+		   		top:0
+		   	});
+		   	$(".h-nav li:first-child a").css(
+		   	{
+		   		color:"white"
+		   	})
+	   },
+	   onSlideChangeEnd:function()
+	   {
+	   		
+	   		$(".alink").css({
+	   			display:"none"
+	   		});
+	   		$(".alink").eq($(".pagination-nested .swiper-active-switch").index()).css({
+	   			display:"block"
+	   		});
+	   		$(".alink").eq($(".pagination-nested .swiper-active-switch").index()).stop().animate({
+	      		top:0
+	      	},300);
+	      	clearInterval(timer);
+	      	timer = setInterval(function()
+	      		{	
+	      			if(swiperNested1.previousIndex>swiperNested1.activeIndex)
+	      			{
+	      				swiperNested1.swipePrev();
+	      			}else{
+	      				swiperNested1.swipeNext();
+	      			}
+	      		},3000)
+	   }
+	})
+	//重写回调函数SlideChangeStart，2.4以上支持以下写法
+	swiperNested1.addCallback('SlideChangeStart', function(swiper){
+		  clearInterval(timer);
+		  //顶部文字下沉
+		  	$aIndex=$(".pagination-nested .swiper-active-switch").index()+(swiperNested1.previousIndex-swiperNested1.activeIndex);
+		  	
+		  	if($aIndex==$(".pagination-nested").children().size())
+		  	{
+		  		$aIndex=0;
+		  	}
+	  		$(".alink").eq($aIndex).stop().animate({
+	  	    		top:35
+	  	    	},300);
+		  	  			 
+		  })
+		  
+	$('.arrow-left').on('click', function(e){
+	  e.preventDefault()
+	  swiperNested1.swipePrev()
+	})
+	$('.arrow-right').on('click', function(e){
+	  e.preventDefault()
+	  swiperNested1.swipeNext()
+	})
+
+	//判断滑动方向
+	var timer = setInterval(function()
+	{	
+		if(swiperNested1.previousIndex>swiperNested1.activeIndex)
+		{
+			swiperNested1.swipePrev();
+		}else{
+			swiperNested1.swipeNext();
+		}
+	},3000)
+
+	// document.title = $(document).width
+	// if($(document).width()<=480)
+	// {
+	// 	alert("small")
+	// }
+	</script>
+</body>
+</html>

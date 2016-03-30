@@ -1,0 +1,549 @@
+﻿<style>
+
+		@font-face{
+			font-family:"HUM521L";
+			src:url(HUM521L.TTF);
+		}
+		*
+		{
+			margin:0;
+			padding:0;
+		}
+		html,body {
+		  font-family: Arial, Helvetica, sans-serif;
+		  font-size: 16px;
+		  line-height: 1.5;
+		  height: 100%;
+		  background-color: #f2f2f2;
+		  position: relative;
+		  /*overflow: hidden;*/
+		}
+		ul,li
+		{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+			color: rgb(173,173,173);
+		}
+		img{
+			border:none;
+		}
+
+		#container
+		{
+			width: 100%;
+			min-width: 320px;
+		}
+		.fixed-top
+		{
+			height: 100px;
+			width: 100%;
+			/*background:url(img/title.jpg) no-repeat center center rgb(51,51,51);*/
+			background-size: 26px ;
+			/*background-color: rgba(0,0,0,.8);*/
+			background-color: rgb(0,0,0);
+			opacity: .8;
+			filter:alpha(opacity=80);
+			position: fixed;
+			top:0;
+			left:0;
+			z-index: 100;
+		}
+		/* 上面的是除了IE6的主流浏览器通用的方法 */
+		* html,* html body /* 修正IE6振动bug */{background-image:url(about:blank);background-attachment:fixed;}
+		* html .fixed-top /* IE6 头部固定 */{position:absolute;bottom:auto;top:expression(eval(document.documentElement.scrollTop));}
+		
+		.slider{
+			position: absolute;
+			left: 0;	
+			display: block;
+			width: 20px;
+			/*top:;*/
+			/*text-align: center;*/
+
+		}
+		/*.slider img{
+			width: 80%;
+		}*/
+		#header h1
+		{
+			height: 52px;
+			max-width: 120px;
+			_width:120px;
+			/*width: 12.5%;*/
+			margin: 0 auto;
+			padding-top: 18px;
+		}
+		#header h1 img
+		{
+			width: 100%;
+		}
+		.h-nav
+		{
+			width:50%;
+			_width:50%;
+			margin: 0 auto;
+			height: 20px;
+			/*border:1px solid red;*/
+		}
+		.h-nav li
+		{
+			float: left;
+			width: 25%;
+			_width:24%;
+			color: #adadad;
+			text-align: center;
+			font-family: "HUM521L";
+			font-size: 1em;
+		}
+		#main
+		{
+			/*height: 880px;*/
+			max-width: 960px;
+			width:76%;
+			_width:960px;
+			margin: 120px auto 0;
+		}
+		.wrap
+		{
+			
+			width: 100%;
+			margin: 0 auto;
+			position: relative;
+			overflow: hidden;
+			_margin-top:117px;
+		}
+
+		.wrap .arrow-left {
+		  /*background: url(img/arrows-left.png) no-repeat right center;*/
+		  position: absolute;
+		  width: 36px;
+		  height: 88%;	
+		  _height:500px;
+		  /*_background-color:rgb(255,255,255);*/
+		  /*filter:alpha(opacity=0);*/
+		  cursor: pointer;
+		  z-index: 10;
+		}
+		.wrap .arrow-left img{
+			position: absolute;
+			right: 0;
+			top:45%;
+			z-index: 10;
+		}
+
+		.wrap .arrow-right {
+		  position: absolute;
+		  right: 0;
+		  width: 36px;
+		  cursor: pointer;
+		  height: 88%;
+		   _height:500px;
+		  z-index: 10;
+		}
+		.wrap .arrow-right img{
+			position: absolute;
+			right: 20px;
+			top:45%;
+		}
+		.swiper-container {
+		  position: relative;
+		}
+
+		.pagination-nested {
+		  text-align: center;
+		  width: 100%;
+		  margin: 2% auto;
+		  z-index: 20;
+		}
+		.swiper-pagination-switch {
+		  display: inline-block;
+		  width: 10px;
+		  height: 10px;
+		  border-radius: 10px;
+		  background: #999;
+		  box-shadow: 0px 1px 2px #555 inset;
+		  margin: 0 3px;
+		  cursor: pointer;
+		}
+		.swiper-active-switch {
+		  background: #fff;
+		}
+		.swiper-container, .swiper-slide {
+		  width: 100%;
+		}
+		.wrap .swiper-slide {
+			position: relative;
+			/*float: left;*/
+		}
+		 .wrap .swiper-slide img {
+		  width: 100%;
+		  float: left;
+		  /*height: 100%;*/
+		}
+		.intro{
+			background-color: rgba(88,88,88,.6);
+			_background-color: rgb(88,88,88);
+			filter:alpha(opacity=60);
+			position: absolute;
+			z-index: 20;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+			height: 40px;
+			line-height: 40px;
+		}
+	
+		.alink
+		{
+			position: relative;
+			top:35px;
+
+			display: none;
+			color: white;
+			/*z-index: 30;*/
+		}
+		
+		.show
+		{
+			width:100%;
+			/*border: 1px blue solid;*/
+			/*margin-top: 40px;*/
+		}
+		hr{
+			background-color: #ccc;
+		}
+
+		.content-info
+		{
+			text-indent: 4em;
+			margin:25px auto 30px;
+			font-family: "楷体";
+			/*margin: 2.523% auto;*/
+		}
+		.work
+		{
+			display: inline-block;
+			_float: left;
+			position: relative;
+			margin-bottom: 54px;
+			width:30%;
+			background-color: #f9f9f9;
+			max-width: 295px;
+			/*_width:295px;*/
+			text-align: center;
+			vertical-align:text-top;
+			border: 1px solid white;
+			overflow: hidden;
+			border-radius: 14px;
+			box-shadow: 5px 5px 5px #dedede,-5px 5px 5px #dedede;
+
+		}
+		.work-pic{
+			position: relative;
+			display: block;
+			overflow: hidden;
+			height: 1%;
+			/*overflow: hidden;*/
+			/*filter:alpha(opacity=20);*/
+		}
+		.transparent-board
+		{
+
+			position: absolute;
+			left: 0;
+			top:0;
+			width: 100%;
+			height: 100%;
+			/*z-index: -1;*/
+			_height:164px;
+			background-color: rgb(0,0,0);
+			opacity: 0;
+			filter:alpha(opacity=0); 
+		}
+		.transparent-board span{
+			color: white;
+			position: relative;
+			/*left:50%;*/
+			top:45%;
+		}
+		.work-center
+		{
+			/*margin: 0 42px;*/
+			margin: 0 3.173% 0;
+			/*margin-left: 20px;*/
+			/*margin-right: 20px;*/
+		}
+		.work img
+		{
+			width:100%;
+			/*height: 90%;*/
+			float: left;
+		}
+		.work .work-title 
+		{
+			display: inline-block;
+			width: 100%;
+			/*margin: 10px 0 ;*/
+			height: 40px;
+			_line-height:40px;
+			font-size: .9em;
+			/*padding: 10px;*/
+			/*font-family: "";*/
+			/*line-height: 40px;	*/
+		}
+		#logo
+		{
+
+			 height: 80px;
+			 width:90%;
+			 margin:24px auto 60px;
+			 margin: 1.818% auto;
+			 text-align: center;
+		}
+		#logo img
+		{
+			 height:50%;
+		}
+		
+		#footer
+		{
+			/*margin-top: 82px;*/
+			clear: both;
+			height: 192px;
+			_width:expression(document.documentElement.clientWidth<960?"960px":""); 
+			background-color: rgb(224,224,224);
+			position: relative;
+			font-family:"HUM521L";
+			font-size: 12px;
+			color: rgb(127,127,127);
+			text-shadow:1px 0px 0px white;
+
+			/*background-image: url(img/footer/line.png)  center;*/
+		}
+		.left
+		{
+			margin-top: 20px;
+			margin-left: 20px;
+			height: 30px;
+			float: left;
+			text-align: right;
+			width: 46%;
+		}
+		.left a{
+			margin-right: 2%;
+		}	
+		.center
+		{
+			position: absolute;
+			left: 50%;
+			top:5%;
+			width:2px;
+			height: 80%;
+			background-image: url(img/footer/line.png);
+		}
+		.right
+		{
+			float: right;
+			width: 48%;
+			text-align: left;
+			margin-top: 20px;
+
+		}
+		.right img
+		{
+			height: 30px;
+		}
+		/*work.html页面*/
+		.work-video
+		{
+			height:420px;	
+			_margin-top:117px;
+		}
+		.work-introduce,.work-img
+		{
+			width: 66%;
+			margin: 0 auto;
+			margin-top: 5%;
+		}
+		.work-img img
+		{
+			width: 100%;
+		}
+		/*contact页面*/
+		.contact-wrap
+		{
+	
+			margin:0 auto;
+			text-align: center;
+			_margin-top:117px;
+		}
+		.contact-wrap img
+		{
+			width:80%;
+			margin: 0 auto;
+		}
+		.contact-wrap .contact-info
+		{
+			text-align: left;
+		}
+		.contact-info h3
+		{
+			font-family: "微软雅黑";
+			font-weight: bolder;
+			font-size: 1.2em;
+		}
+		.contact-info li
+		{
+			margin-top: 2%;
+		}
+		.contact-info ul
+		{
+			margin-bottom: 4%;
+		}
+		.contact-info ul strong
+		{
+			font-family: "微软雅黑";
+			font-weight: bolder;
+		}
+		.contact-info p
+		{
+			margin-top: 3%;
+		}
+		.contact-info
+		{
+			margin-bottom: 5%;
+		}
+		@media screen and (min-width:481px) and (max-width: 640px) { 
+				body
+				{
+					font-size: 10px;
+				}
+				#main
+				{
+					width:80%;
+					overflow: hidden;
+				}
+				#logo img{
+					height: 40%;
+				}
+				.left,.right
+				{
+					width: 42%;
+				}
+				.intro
+				{
+					height: 30px;
+					line-height: 30px;
+				}
+				.work
+				{
+					width: 45%;
+					float: right;
+					margin: 0;
+					margin-bottom: 20px;
+				}
+				.work .work-title
+				{
+					height: 30px;
+				}
+				.work-odd
+				{
+					margin-right: 5%;
+					float: left;
+				}
+				
+				/*work.html页面*/
+				.work-video
+				{
+					height:320px;
+				}
+
+				.work-introduce,.work-img
+				{
+					width: 82%;
+					margin: 0 auto;
+					margin-top: 5%;
+				}
+				.wrap .arrow-right img, .wrap .arrow-left img{
+					width:30%;
+					top:40%;
+				}
+
+			}
+
+		@media screen and (max-width:480px) { 
+			
+			body
+			{
+				font-size: 10px;
+			}
+			#main
+			{
+				width:92%;
+			}
+			#logo img{
+				height: 30%;
+			}
+			.h-nav
+			{
+				width:80%;
+				margin: 0 auto;
+			}
+			.wrap .arrow-right img,.wrap .arrow-left img{
+				width:20%;
+				top:40%;
+			}
+			.work
+			{
+				width: 45%;
+				float: right;
+				margin: 0;
+				margin-bottom: 20px;	
+			}
+			.intro
+			{
+				height: 25px;
+				line-height: 25px;
+			}
+			.work-odd
+				{
+					margin-right: 5%;
+					float: left;
+				}
+			.work .work-title
+			{
+				height:30px;
+			}
+			.left,.right
+			{
+				width: 42%;
+			}
+			.right{
+				margin-right: 3%;
+			}
+			/*.slider
+			{
+				display: none
+			}*/
+
+			/*work.html页面*/
+			.work-video
+			{
+				height:240px;
+			}
+
+			.work-introduce,.work-img
+			{
+				width: 86%;
+				margin: 0 auto;
+				margin-top: 5%;
+			}
+			#footer
+			{
+				height: 200px;
+			}
+		 }
+
+	</style>
